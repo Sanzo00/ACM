@@ -10,6 +10,6 @@ hihoCoder                     3
 
 
 
-LastWeek: 0
+Until Last Week: 0
 ```
 #### Total: 3
