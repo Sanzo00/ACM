@@ -10,7 +10,7 @@ hihoCoder                     3
 
 
 
-Until Last Week: 123
+Until Last Week: 0
 
 ```
 #### Total: 3
