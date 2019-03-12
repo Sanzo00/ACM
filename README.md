@@ -3,10 +3,10 @@
 ```Codeforces                    0
 HDU                           0
 POJ                           0
-hihoCoder                     3
+hihoCoder                     4
 
 
 Until Last Week: 0
 
 ```
-#### Total: 3
+#### Total: 4
