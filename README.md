@@ -1,12 +1,12 @@
 # All the problems I solved
 
-```Codeforces                    0
+```Codeforces                    7
 HDU                           0
-POJ                           0
+POJ                           1
 hihoCoder                     4
 
 
 Until Last Week: 0
 
 ```
-#### Total: 4
+#### Total: 12
