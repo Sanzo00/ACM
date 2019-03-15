@@ -2,12 +2,11 @@
 
 ```
 Codeforces                    7
-HDU                           0
+HDU                           1
 POJ                           1
 hihoCoder                     4
 
 
-Until Last Week: 0
-
+Until Last Week: -1
 ```
-#### Total: 12
+#### Total: 13
