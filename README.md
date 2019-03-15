@@ -4,6 +4,6 @@
 Codeforces                    7
 HDU                           1
 POJ                           1
-hihoCoder                     4
+hihoCoder                     5
 ```
-## Total: 13
+## Total: 14
