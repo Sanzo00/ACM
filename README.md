@@ -1,9 +1,9 @@
 # All the problems I solved
 
 ```
-Codeforces                    19
+Codeforces                    22
 HDU                           5
 POJ                           1
 hihoCoder                     6
 ```
-## Total: 31
+## Total: 34
