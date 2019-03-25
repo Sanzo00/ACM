@@ -3,7 +3,7 @@
 ```
 Codeforces                    22
 HDU                           5
-POJ                           1
+POJ                           2
 hihoCoder                     6
 ```
-## Total: 34
+## Total: 35
