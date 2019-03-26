@@ -2,8 +2,8 @@
 
 ```
 Codeforces                    22
-HDU                           5
+HDU                           6
 POJ                           2
 hihoCoder                     6
 ```
-## Total: 35
+## Total: 36
