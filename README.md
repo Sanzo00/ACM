@@ -2,11 +2,11 @@
 
 ```
 Codeforces                    24
-HDU                           6
+HDU                           7
 POJ                           2
 SPOJ                          1
 URAL                          1
 UVA                           1
 hihoCoder                     6
 ```
-## Total: 41
+## Total: 42
