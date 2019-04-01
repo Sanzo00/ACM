@@ -55,12 +55,10 @@ void solve() {
     for (int i = 0; i < n; ++i) {
         if (vis[i] == 0) continue;
         g[find(i, ka)].push_back(i);
-        // cout << i << endl;
         vis[i] = 0;
     }
     for (int i = 0; i < n; ++i) {
         int len = g[i].size();
-        // cout << i << " " << len << endl;
         if (len <= 1) continue;
         mem(A, 0);
         for (int j = 0; j < len; ++j) {
@@ -73,7 +71,6 @@ void solve() {
                 A[j][k] = (A[k][j] -= B[u][v]);
             }
         }
-        // cout << det(len-1) << endl;
         ans = ans * det(len-1) % mod;
         for (int j = 0; j < len; ++j) fa[g[i][j]] = i;
     }
@@ -102,8 +99,6 @@ int main() {
             if (u == v) continue;
             vis[u] = vis[v] = 1;
             B[u][v] = (B[v][u] += 1);
-            // B[u][v]++;
-            // B[v][u]++;
             u = find(u, ka);
             v = find(v, ka);
             if (u > v) swap(u, v);
