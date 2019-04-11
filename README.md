@@ -10,8 +10,8 @@ Nowcoder                      1
 POJ                           6
 SPOJ                          2
 URAL                          1
-UVA                           1
+UVA                           2
 cometOJ                       1
 hihoCoder                     6
 ```
-## Total: 81
+## Total: 82
