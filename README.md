@@ -6,7 +6,7 @@ HDU                           10
 HPUOJ                         11
 Kattis                        2
 Luogu                         2
-Nowcoder                      4
+Nowcoder                      5
 POJ                           6
 SPOJ                          2
 URAL                          1
@@ -15,4 +15,4 @@ cometOJ                       1
 hihoCoder                     6
 zzuliOJ                       6
 ```
-## Total: 91
+## Total: 92
