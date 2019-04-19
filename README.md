@@ -1,7 +1,7 @@
 # All the problems I solved
 
 ```
-Codeforces                    50
+Codeforces                    51
 HDU                           10
 HPUOJ                         11
 Kattis                        2
@@ -16,4 +16,4 @@ cometOJ                       1
 hihoCoder                     6
 zzuliOJ                       7
 ```
-## Total: 107
+## Total: 108
