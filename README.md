@@ -2,7 +2,7 @@
 
 ```
 Codeforces                    51
-HDU                           10
+HDU                           12
 HPUOJ                         11
 Jisuanke                      1
 Kattis                        2
@@ -17,4 +17,4 @@ cometOJ                       1
 hihoCoder                     6
 zzuliOJ                       7
 ```
-## Total: 112
+## Total: 114
