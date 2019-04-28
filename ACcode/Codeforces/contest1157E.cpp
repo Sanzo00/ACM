@@ -11,41 +11,40 @@ const int maxn = 1e5 + 5;
 const int inf = 0x3f3f3f3f;
 const int mod = 1e9 + 7;
 using namespace std;
-vector<int> a(maxn);
-
-string s;
-string dfs(int l, int r, int x) {
-	if (l == r && a[l] > x) {
-		return "L";
-	}
-	if (l == r && a[l] < x) {
-		return "";
-	}
-	if (a[l] > a[r] && a[r] > x) return dfs(l, r-1, a[r]) + "R";
-	if (a[l] > a[r] && a[r] < x && a[l] > x) return dfs(l+1, r, a[l]) + "L";
-	if (a[r] > a[l] && a[l] > x) return dfs(l+1, r, a[l]) + "L";
-	if (a[r] > a[l] && a[l] < x && a[r] > x) return dfs(l, r-1, a[r]) + "R";
-	if (a[l] == a[r] && a[l] < x) return "";
-	else {
-		string s = dfs(l+1, r, a[l]) + "L";
-		string t = dfs(l, r-1, a[r]) + "R";
-		if (s.size() > t.size()) {
-			return s;
-		}else return t;
-	}
-}
-
 int main () {
     ios::sync_with_stdio(0);
     cin.tie(0), cout.tie(0);
+
     int n;
     cin >> n;
-	for (int i = 0; i < n; ++i) {
-		cin >> a[i];
-	}    
-	string ans = dfs(0, n-1, 0);
-	cout << ans.size() << endl;
-	cout << ans << endl;
+    vector<int> a(n), ans;
+    multiset<int> st;
 
+    for (int i = 0; i < n; ++i) {
+    	cin >> a[i];
+    }
+    for (int i = 0, d; i < n; ++i) {
+    	cin >> d;
+    	st.insert(d);
+    }
+ 	for (int i = 0; i < n; ++i) {
+ 		auto it = st.find(n - a[i]);
+ 		if (it != st.end()) {
+ 			ans.push_back(0);
+ 			st.erase(it);
+ 		}else {
+ 			auto q = st.lower_bound(n-a[i]);
+ 			if (q == st.end()) {
+ 				q = st.begin();
+ 			}
+			ans.push_back(((*q + a[i]) % n));
+			st.erase(q);
+ 		}
+ 	}
+ 	for (int i = 0; i < n; ++i) {
+ 		if (i > 0) cout << " ";
+ 		cout << ans[i];
+ 	}
+ 	cout << endl;
     return 0;
 }
