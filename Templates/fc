@@ -1,0 +1,11 @@
+while true; do
+./data
+./code1
+./code2
+if diff out1.txt out2.txt; then
+echo AC
+else
+echo WA
+exit 0
+fi
+done
