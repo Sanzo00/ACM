@@ -6,7 +6,7 @@ CometOJ                       3
 ECNUOJ                        4
 HDU                           16
 HPUOJ                         11
-Jisuanke                      1
+Jisuanke                      2
 Kattis                        2
 Luogu                         2
 NEWoj                         1
@@ -18,4 +18,4 @@ UVA                           5
 hihoCoder                     6
 zzuliOJ                       8
 ```
-## Total: 162
+## Total: 163
