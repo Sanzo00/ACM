@@ -1,12 +1,12 @@
 int cntA[maxn], cntB[maxn], A[maxn], B[maxn];
 int Sa[maxn], tsa[maxn], height[maxn], Rank[maxn];
 char s[maxn];
-int n, k;
-void suffixArray () {
-	for (int i = 0; i < 256; ++i) cntA[i] = 0;
-	for (int i = 1; i <= n; ++i) cntA[s[i]]++;
-	for (int i = 1; i < 256; ++i) cntA[i] += cntA[i-1];
-	for (int i = n; i >= 1; --i) Sa[ cntA[s[i]]-- ] = i;
+int n;
+void SuffixArray () {
+	for (int i = 0; i < 1000; ++i) cntA[i] = 0;
+	for (int i = 1; i <= n; ++i) cntA[(int)s[i]]++;
+	for (int i = 1; i < 1000; ++i) cntA[i] += cntA[i-1];
+	for (int i = n; i >= 1; --i) Sa[ cntA[(int)s[i]]-- ] = i;
 	Rank[ Sa[1] ] = 1;
 	for (int i = 2; i <= n; ++i) {
 		Rank[Sa[i]] = Rank[Sa[i-1]];

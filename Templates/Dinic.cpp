@@ -1,11 +1,13 @@
-const int maxn = 411;
-const int inf = 0x3f3f3f3f;
 struct ac{
     int v, c, pre;
 }edge[maxn<<6];
 int s, e;
-int head[maxn], dis[maxn], curedge[maxn], cnt;
-void add(int u, int v, int c) {
+int head[maxn<<1], dis[maxn<<1], curedge[maxn<<1], cnt;
+void init() {
+    mem(head, -1);
+    cnt = 0;
+}
+void addedge(int u, int v, int c) { // 记得双向边
     edge[cnt] = {v, c, head[u]};
     head[u] = cnt++;
 }
