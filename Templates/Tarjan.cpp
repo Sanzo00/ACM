@@ -1,6 +1,14 @@
 int Stack[maxn], low[maxn], dfn[maxn], inStack[maxn], belong[maxn];
-int now = 0, len = 0, cnt= 0;
+int now, len, cnt;
 // now:时间戳，len：栈的大小，cnt强连通的个数
+void init() {
+	now = len = cnt = 0;
+	mem(inStack, 0);
+	mem(belong, 0);
+	mem(dfn, 0);
+	mem(low, 0);
+}
+
 void tarjan(int x) {
     // 打上标记，入栈
     low[x] = dfn[x] = ++now;
