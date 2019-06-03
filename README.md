@@ -10,7 +10,7 @@ Jisuanke                      2
 Kattis                        2
 Luogu                         2
 NEWoj                         1
-Nowcoder                      30
+Nowcoder                      31
 POJ                           17
 SPOJ                          2
 URAL                          1
@@ -18,4 +18,4 @@ UVA                           6
 hihoCoder                     10
 zzuliOJ                       8
 ```
-## Total: 190
+## Total: 191
