@@ -14,9 +14,9 @@ Nowcoder                      31
 POJ                           17
 SPOJ                          2
 URAL                          1
-UVA                           6
+UVA                           5
 ZOJ                           2
 hihoCoder                     10
 zzuliOJ                       8
 ```
-## Total: 195
+## Total: 194
