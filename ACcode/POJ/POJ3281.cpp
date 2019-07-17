@@ -1,103 +1,89 @@
 #include <iostream>
-#include <map>
-#include <set>
-#include <cmath>
 #include <queue>
-#include <vector>
-#include <algorithm>
 #include <cstring>
-#include <time.h>
-#define LL long long
-#define P pair<int, int>
-#define lowbit(x) (x & -x)
-#define mem(a, b) memset(a, b, sizeof(a))
-#define mid ((l + r) >> 1)
-#define lc rt<<1
-#define rc rt<<1|1
-using namespace std;
-const int maxn = 405;
+const int maxn = 4e2 + 5;
 const int inf = 0x3f3f3f3f;
-
-int g[maxn][maxn];
-int N, F, D;
-int vis[maxn], pre[maxn], tmp[maxn];
-
-bool bfs (int s, int e) {
-    mem(vis, 0);
-    mem(pre, -1);
-    vis[s] = 1;
-    pre[s] = s;
-    queue<int> que;
-    que.push(s);
-    while (!que.empty()) {
-        int f = que.front();
-        que.pop();
-        // cout <<f << endl;
-        for (int i = 1; i <= e; ++i) {
-            // cout << i << endl;
-            if (vis[i] || !g[f][i]) continue;
-            pre[i] = f;
-            tmp[i] = g[f][i];
-            vis[i] = 1;
-            que.push(i);
-            if (i == e) return 1;
-        }
-    }
-    return 0;
+using namespace std;
+struct ac{
+	int v, c, nex;
+}edge[maxn << 4];
+int head[maxn], curedge[maxn], cnt, s, e;
+int dis[maxn];
+void init() {
+	memset(head, -1, sizeof(head));
+	cnt = 0;
 }
-
-int EK(int s, int e) {
-    int ans = 0;
-    while (bfs(s, e)) {
-        int MIN = inf;
-        int i = e;
-        while (i != s) {
-            MIN = min(MIN, g[pre[i]][i]);
-            i = pre[i];
-        }
-        i = e;
-        while (i != s) {
-            g[pre[i]][i] -= MIN;
-            g[i][pre[i]] += MIN;
-            i = pre[i];
-        }
-        ans += MIN;
-    }
-    return ans;
+void addedge(int u, int v, int c) {
+	edge[cnt] = {v, c, head[u]};
+	head[u] = cnt++;
+	edge[cnt] = {u, 0, head[v]};
+	head[v] = cnt++;
 }
-
-int main() {
-
+int bfs() {
+	memset(dis, 0, sizeof(dis));
+	dis[s] = 1;
+	queue<int> que;
+	que.push(s);
+	while (!que.empty()) {
+		int u = que.front();
+		que.pop();
+		for (int i = head[u]; i != -1; i = edge[i].nex) {
+			int v = edge[i].v;
+			int c = edge[i].c;
+			if (dis[v] || c == 0) continue;
+			dis[v] = dis[u] + 1;
+			que.push(v);
+		}
+	}
+	return dis[e] > 0;
+}
+int dfs(int u, int flow) {
+	if (u == e || flow == 0) return flow;
+	for (int &i = curedge[u]; i != -1; i = edge[i].nex) {
+		int v = edge[i].v;
+		int c = edge[i].c;
+		if (dis[v] != dis[u] + 1) continue;
+		int tmp = dfs(v, min(flow, c));
+		if (tmp > 0) {
+			edge[i].c -= tmp;
+			edge[i^1].c += tmp;
+			return tmp;
+		}
+	}
+	dis[u] = -1;
+	return 0;
+}
+int Dinic() {
+	int ans = 0, tmp;
+	while (bfs()) {
+		for (int i = 0; i <= e; ++i) curedge[i] = head[i];
+		while ((tmp = dfs(s, inf)) > 0) ans += tmp;
+	}
+	return ans;
+}
+int main () {
     ios::sync_with_stdio(false);
-    cin.tie(0); cout.tie(0);   
-    cin >> N >> F >> D;
-    int n1 = F;
-    int n2 = n1 + N;
-    int n3 = n2 + N;
-    int s = 0, e = n3 + D + 1;
-    for (int i = 1, fi, di; i <= N; ++i) {
-        cin >> fi >> di;
-        for (int j = 0, d; j < fi; ++j) {
-            cin >> d;
-            g[d][n1+i] = 1;
-        }
-        for (int j = 0, d; j < di; ++j) {
-            cin >> d;
-            g[n2+i][n3+d] = 1;
-        }
+    cin.tie(0), cout.tie(0);
+    int n, f, d;
+    while (cin >> n >> f >> d) {
+    	init();
+	    s = 0, e = n*2 + f + d + 1;
+	    for (int i = 1; i <= n; ++i) {
+	    	int a, b, t;
+	    	cin >> a >> b;
+	    	for (int j = 1; j <= a; ++j) {
+	    		cin >> t;
+	    		addedge(t, f+i, 1);
+	    	}
+	    	for (int j = 1; j <= b; ++j) {
+	    		cin >> t;
+	    		addedge(f+n+i, n*2+f+t, 1);
+	    	}
+	    }
+	    for (int j = 1; j <= f; ++j) addedge(s, j, 1);
+	    for (int j = 1; j <= d; ++j) addedge(n*2+f+j, e, 1);
+	    for (int j = 1; j <= n; ++j) addedge(f+j, f+n+j, 1);
+	    cout << Dinic() << endl;
     }
-    for (int i = 1; i <= F; ++i) {
-        g[s][i] = 1;
-    }
-    for (int i = 1; i <= D; ++i) {
-        g[i+n3][e] = 1;
-    }
-    for (int i = 1; i <= N; ++i) {
-        g[n1+i][n2+i] = 1;
-    }
-
-    int ans = EK(s, e);
-    cout << ans << endl;
-
     return 0;
 }

@@ -10,6 +10,7 @@ int g[maxn][maxn], pre[maxn], vis[maxn];
 int in[maxn][12], out[maxn][12], val[maxn];
 int backup[maxn][maxn];
 int n, m;
+int used[maxn];
 bool bfs(int s, int e) {
 	memset(vis, 0, sizeof(vis));
 	memset(pre, -1, sizeof(pre));
@@ -69,6 +70,7 @@ int main () {
 	cin.tie(0), cout.tie(0);
 	while (cin >> n >> m) {
 		memset(g, 0, sizeof(g));
+		memset(used, 0, sizeof(used));
 		for (int i = 1; i <= m; ++i) {
 			cin >> val[i];
 			for (int j = 0; j < n; ++j) cin >> in[i][j];
@@ -78,13 +80,14 @@ int main () {
 		for (int i = 1; i <= m; ++i) {
 			if (check_in(i)) {
 				g[s][i] = val[i];
+				used[i] = 1;
 			}
 			if (check_out(i)) {
 				g[i][e] = val[i];
 				continue;
 			}
 			for (int j = 1; j <= m; ++j) {
-				if (i == j) continue;
+				if (i == j || used[j]) continue;
 				if (check(i, j)) g[i][j] = val[i];
 			}
 		}
