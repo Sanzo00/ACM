@@ -10,11 +10,13 @@
 ### [H - Interesting Housing Problem](#H)
 ### [I - One fight one](#I)
 
+<div STYLE="page-break-after: always;"></div>
+
 
 <h3 id="A">A - Girls and Boys (HDU-1068)</h3>
 #### 题意
 
-N个人每个人有几个浪漫关系，求一个最大的集合，使集合中没存在两两有浪漫关系
+N个人之间存在一些浪漫关系，求一个最大的集合，使集合中不存在两两有浪漫关系
 
 #### 思路
 
