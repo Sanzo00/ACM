@@ -12,7 +12,6 @@
 
 <div STYLE="page-break-after: always;"></div>
 
-
 <h3 id="A">A - Girls and Boys (HDU-1068)</h3>
 #### 题意
 
