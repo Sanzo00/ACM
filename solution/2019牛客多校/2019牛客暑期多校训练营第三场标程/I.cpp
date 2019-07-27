@@ -17,7 +17,7 @@ int med(int x,int y,int z) {
 }
 
 void gao(int i,int j,int k) {
-    while(i >= 1) {
+    while(i >= 1) { 
         ans[i] = v[i][j];
         int nxt = from[i][j][k];
         j = k;
@@ -68,6 +68,7 @@ int main() {
                     }
                     if (i == N && f[i][j][k]) {
                         findans = true;
+                        cout << i << " " << j << " " << k << endl;
                         gao(i,j,k);
                         goto END;
                     }
