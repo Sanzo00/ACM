@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-const int maxn = 3e5 + 4;
+const int maxn = 1e5 + 4;
 
 using namespace std;
 struct Palindromic_Tree{
@@ -28,17 +28,13 @@ struct Palindromic_Tree{
         c -= 'a';
         S[++n] = c;
         int cur = get_fail(last);
-        // cout << "c = " << c << " cur = " << cur <<endl;
         if (!nex[cur][c]) {
             int now = newnode(len[cur] + 2);
-            // cout << "now = " << now << endl;
             fail[now] = nex[get_fail(fail[cur])][c];
-            // cout << "fail = " << fail[now] << endl;
             nex[cur][c] = now;
             num[now] = num[fail[now]] + 1;
         }
         last = nex[cur][c];
-        // cout << "last = " << last << endl;
         cnt[last]++;
     }
     void count() {
@@ -49,19 +45,26 @@ int ans[1011][1011];
 char s[maxn];
 int main() {
     ios::sync_with_stdio(false);
-    cin.tie(0), cout.tie(0);
-    
-    scanf("%s", s);
-    Tree.init();
-    for (int i = 0; s[i]; ++i) {
-        Tree.add(s[i]);
+    cin.tie(0), cout.tie(0);    
+    int T;
+    scanf("%d", &T);
+    while (T--) {
+        scanf("%s", s);
+        int len = strlen(s);
+        for (int i = 0; i < len; ++i) {
+            Tree.init();
+            for (int j = i; j < len; ++j) {
+                Tree.add(s[j]);
+                ans[i+1][j+1] = Tree.p - 2;
+            }
+        }
+        int n;
+        scanf("%d", &n);
+        for (int i = 0; i < n; ++i) {
+            int l, r;
+            scanf("%d %d", &l, &r);
+            printf("%d\n", ans[l][r]);
+        }
     }
-    Tree.count();
-    long long ans= -1;
-    for (int i = 0; i < Tree.p; ++i) {
-        ans = max(ans, 1ll * Tree.cnt[i] * Tree.len[i]);
-    }
-    cout << ans << endl;
-
     return 0;
 }
