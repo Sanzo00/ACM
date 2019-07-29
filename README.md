@@ -1,11 +1,11 @@
 # All the problems I solved
 
 ```
-BZOJ                          1
+BZOJ                          3
 Codeforces                    76
 CometOJ                       5
 ECNUOJ                        4
-HDU                           38
+HDU                           39
 HPUOJ                         11
 Jisuanke                      2
 Kattis                        2
@@ -20,4 +20,4 @@ ZOJ                           2
 hihoCoder                     10
 zzuliOJ                       8
 ```
-## Total: 230
+## Total: 233
