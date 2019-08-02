@@ -1,28 +1,26 @@
 #include <iostream>
 #include <vector>
 #define endl '\n'
-const int maxn = 5e3 + 5;
-const int inf = 0x3f3f3f3f;
-const int mod = 1e9 + 7;
+const int maxn = 1e2 + 5;
 using namespace std;
 vector<int> g[maxn];
-int dfn[maxn], low[maxn], in[maxn], vis[maxn], Stack[maxn], ts, cnt, len;
-int a[maxn][maxn];
-void tarjan(int u, int fa) {
+int dfn[maxn], low[maxn], in[maxn], out[maxn], vis[maxn], inStack[maxn], Stack[maxn], ts, cnt, len;
+void tarjan(int u) {
 	dfn[u] = low[u] = ++ts;
 	Stack[len++] = u;
+	inStack[u] = 1;
 	for (int i = 0; i < (int)g[u].size(); ++i) {
 		int v = g[u][i];
-		if (v == fa) continue;
 		if (!dfn[v]) {
-			tarjan(v, u);
+			tarjan(v);
 			low[u] = min(low[u], low[v]);
-		}else low[u] = min(low[u], dfn[v]);
+		}else if(inStack[v]) low[u] = min(low[u], dfn[v]);
 	}
 	if (low[u] == dfn[u]) {
 		++cnt;
 		while (1) {
 			int v = Stack[--len];
+			inStack[v] = 0;
 			vis[v] = cnt;
 			if (v == u) break;
 		}
@@ -31,32 +29,34 @@ void tarjan(int u, int fa) {
 int main() {
 	ios::sync_with_stdio(0);
 	cin.tie(0), cout.tie(0);
-	int n, m;
-	cin >> n >> m;
-	for (int i = 0; i < m; ++i) {
-		int u, v;
-		cin >> u >> v;
-		if (a[u][v]) continue;
-		a[u][v] = a[v][u] = 1;
-		g[u].push_back(v);
-		g[v].push_back(u);
-	}
-	ts = len = cnt = 0;
+	int n, d;
+	cin >> n;
 	for (int i = 1; i <= n; ++i) {
-		if (dfn[i] == 0) tarjan(i, 0);
+		while (cin >> d, d) {
+			g[i].push_back(d);
+		}
+	}	
+	len = cnt = ts = 0;
+	for (int i = 1; i <= n; ++i) {
+		if (dfn[i] == 0) tarjan(i);
 	}
 	for (int i = 1; i <= n; ++i) {
 		for (int j = 0; j < (int)g[i].size(); ++j) {
 			int v = g[i][j];
 			if (vis[i] == vis[v]) continue;
 			in[vis[v]]++;
+			out[vis[i]]++;
 		}
 	}
-	int ans = 0;
-	for (int i = 1; i <= n; ++i) {
-		if (in[i] == 1) ans++;
+	if (cnt == 1) {
+		cout << "1\n0\n";
+		return 0;
 	}
-	ans = (ans + 1) / 2;
-	cout << ans << endl;
+	int in_ = 0, out_ = 0;
+	for (int i = 1; i <= cnt; ++i) {
+		if (in[i] == 0) in_++;
+		if (out[i] == 0) out_++;
+	}
+	cout << in_ << "\n" << max(in_, out_) << endl;
 	return 0;
 }

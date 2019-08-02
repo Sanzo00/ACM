@@ -1,13 +1,12 @@
 #include <iostream>
 #include <vector>
 #define endl '\n'
-const int maxn = 5e3 + 5;
+const int maxn = 1e3 + 5;
 const int inf = 0x3f3f3f3f;
 const int mod = 1e9 + 7;
 using namespace std;
 vector<int> g[maxn];
 int dfn[maxn], low[maxn], in[maxn], vis[maxn], Stack[maxn], ts, cnt, len;
-int a[maxn][maxn];
 void tarjan(int u, int fa) {
 	dfn[u] = low[u] = ++ts;
 	Stack[len++] = u;
@@ -36,8 +35,6 @@ int main() {
 	for (int i = 0; i < m; ++i) {
 		int u, v;
 		cin >> u >> v;
-		if (a[u][v]) continue;
-		a[u][v] = a[v][u] = 1;
 		g[u].push_back(v);
 		g[v].push_back(u);
 	}
