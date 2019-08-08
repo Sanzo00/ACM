@@ -8,7 +8,6 @@ void init() {
 	mem(dfn, 0);
 	mem(low, 0);
 }
-
 void tarjan(int x) {
     // 打上标记，入栈
     low[x] = dfn[x] = ++now;
