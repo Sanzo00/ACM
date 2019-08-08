@@ -2,7 +2,7 @@
 
 ```
 BZOJ                          3
-Codeforces                    76
+Codeforces                    77
 CometOJ                       5
 ECNUOJ                        4
 HDU                           46
@@ -12,7 +12,7 @@ Kattis                        2
 Luogu                         2
 NEWoj                         1
 Nowcoder                      44
-POJ                           25
+POJ                           26
 SPOJ                          2
 URAL                          1
 UVA                           7
