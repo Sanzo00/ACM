@@ -1,16 +1,13 @@
 struct SAM{
-
     int trans[maxn<<1][26], slink[maxn<<1], maxlen[maxn<<1];
     // 用来求endpos
     int indegree[maxn<<1], endpos[maxn<<1], rank[maxn<<1], ans[maxn<<1];
     // 计算所有子串的和(0-9表示)
-    LL sum[maxn<<1];
+    long sum[maxn<<1];
     int last, now, root, len;
-    
     inline void newnode (int v) {
         maxlen[++now] = v;
     }
-    
     inline void extend(int c) {
         newnode(maxlen[last] + 1);
         int p = last, np = now;
@@ -39,16 +36,14 @@ struct SAM{
         // 初始状态为可接受状态
         endpos[np] = 1;
     }
-
     inline void build(char *s) {
         // scanf("%s", s);
         len = strlen(s);
         root = last = now = 1;
         for (int i = 0; i < len; ++i) extend(s[i] - '0'); // extend(s[i] - '1');
     }
-
     // 计算所有子串的和（0-9表示）
-    inline LL getSum() {
+    inline long getSum() {
     	// 拓扑排序 
         for (int i = 1; i <= now; ++i) indegree[ maxlen[i] ]++;
         for (int i = 1; i <= now; ++i) indegree[i] += indegree[i-1];
@@ -61,11 +56,11 @@ struct SAM{
                 int nex = trans[x][j];
                 if (!nex) continue;
                 endpos[nex] += endpos[x]; // 有效入度
-                LL num = (sum[x] * 10 + endpos[x] * j) % mod; 
+                long num = (sum[x] * 10 + endpos[x] * j) % mod; 
                 sum[nex] = (sum[nex] + num) % mod; // 状态转移
             }
         }
-        LL ans = 0;
+        long long ans = 0;
         for (int i = 2; i <= now; ++i) ans = (ans + sum[i]) % mod;
         return ans;
     }
@@ -80,10 +75,9 @@ struct SAM{
             endpos[slink[x]] += endpos[x];
         }
     }
-
     // 求不同的子串种类
-    inline LL all () {
-        LL ans = 0;
+    inline long long all () {
+        long long ans = 0;
         for (int i = root+1; i <= now; ++i) {
             ans += maxlen[i] - maxlen[ slink[i] ];
         }
@@ -99,5 +93,4 @@ struct SAM{
         for (int i = 1; i <= len; ++i) //cout << ans[i] << endl; 
             printf("%d\n", ans[i]);
     }
-    
 }sam;
