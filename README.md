@@ -2,7 +2,7 @@
 
 ```
 BZOJ                          3
-Codeforces                    79
+Codeforces                    80
 CometOJ                       5
 ECNUOJ                        4
 HDU                           48
@@ -20,4 +20,4 @@ ZOJ                           2
 hihoCoder                     10
 zzuliOJ                       8
 ```
-## Total: 257
+## Total: 258
