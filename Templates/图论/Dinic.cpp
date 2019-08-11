@@ -27,7 +27,6 @@ bool bfs() {
     }
     return dis[e] > 0; 
 }
-
 int dfs(int now, int flow) {
     if (now == e || flow == 0) return flow;
     for (int &i = curedge[now]; i != -1; i = edge[i].pre) { // 当前弧优化

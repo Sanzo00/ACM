@@ -54,14 +54,11 @@ void Kruskal() {
 	}
 	printf("%d %d\n", sum, ans);
 }
-
-
 // Prim
 int n, m;
 int g[maxn][maxn], val[maxn], vis[maxn], dis[maxn];
 int pre[maxn], maxd[maxn][maxn];
 bool used[maxn][maxn];
-
 void prim(int s) {
     mem(maxd, 0);
     mem(vis, 0);
@@ -70,7 +67,6 @@ void prim(int s) {
         dis[i] = g[s][i];
         pre[i] = s;
     }
-
     vis[s] = 1;
     int sum = 0, cnt = 0;
     for (int i = 1; i < n; ++i) {
