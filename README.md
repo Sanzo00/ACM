@@ -9,7 +9,7 @@ HDU                           53
 HPUOJ                         11
 Jisuanke                      2
 Kattis                        2
-Luogu                         2
+Luogu                         3
 NEWoj                         1
 Nowcoder                      46
 POJ                           28
@@ -20,4 +20,4 @@ ZOJ                           2
 hihoCoder                     10
 zzuliOJ                       8
 ```
-## Total: 269
+## Total: 270
