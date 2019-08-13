@@ -2,7 +2,7 @@
 
 ```
 BZOJ                          3
-Codeforces                    81
+Codeforces                    82
 CometOJ                       5
 ECNUOJ                        4
 HDU                           53
