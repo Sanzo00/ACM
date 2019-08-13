@@ -1,3 +1,7 @@
+#include <bits/stdc++.h>
+const int maxn = 1e6 + 5;
+const int mod = 1e9 + 7;
+using namespace std;
 struct exKMP{
     // 字符串下标从0开始
     int nex[maxn], ex[maxn]; //模式串nex，匹配串ex
@@ -38,3 +42,23 @@ struct exKMP{
         }
     }
 }ek;
+char s[maxn], t[maxn];
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0), cout.tie(0);
+	int T;
+	scanf("%d", &T);
+	while (T--) {
+		scanf("%s%s", s, t);
+		int lens = strlen(s);
+		reverse(s, s + strlen(s));
+		reverse(t, t + strlen(t));
+		ek.get_ex(s, t);
+		long long ans = 0;
+		for (int i = 0; i < lens; ++i) {
+			ans = (ans + 1ll * (1 + ek.ex[i]) * ek.ex[i] / 2) % mod;
+		}
+		printf("%lld\n", ans);
+	}
+	return 0;
+}
