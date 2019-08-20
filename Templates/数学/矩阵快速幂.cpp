@@ -1,6 +1,6 @@
 struct Matrix{
     int n;
-    LL mat[151][151];
+    long long mat[151][151];
     Matrix(){}
     Matrix(int _n) {
         n = _n;

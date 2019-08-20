@@ -5,14 +5,14 @@ BZOJ                          3
 Codeforces                    91
 CometOJ                       5
 ECNUOJ                        4
-HDU                           62
+HDU                           65
 HPUOJ                         11
 Jisuanke                      2
 Kattis                        2
 Luogu                         6
 NEWoj                         1
 Nowcoder                      48
-POJ                           32
+POJ                           35
 SPOJ                          2
 URAL                          1
 UVA                           8
@@ -20,4 +20,4 @@ ZOJ                           2
 hihoCoder                     10
 zzuliOJ                       8
 ```
-## Total: 298
+## Total: 304
