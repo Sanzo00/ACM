@@ -12,7 +12,7 @@ Kattis                        2
 Luogu                         6
 NEWoj                         1
 Nowcoder                      48
-POJ                           35
+POJ                           36
 SPOJ                          2
 URAL                          1
 UVA                           8
@@ -20,4 +20,4 @@ ZOJ                           2
 hihoCoder                     10
 zzuliOJ                       8
 ```
-## Total: 304
+## Total: 305
