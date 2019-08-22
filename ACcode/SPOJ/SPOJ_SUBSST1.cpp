@@ -1,13 +1,23 @@
+#include <iostream>
+#include <stdio.h>
+#include <vector>
+#include <queue>
+#include <cmath>
+#include <cstring>
+const int maxn = 1e6 + 5;
+const int mod = 1e9 + 7;
+const int inf = 0x3f3f3f3f;
+using namespace std;
 struct SuffixArray{ // 下标1
 	int cntA[maxn], cntB[maxn], A[maxn], B[maxn];
 	int Sa[maxn], tsa[maxn], height[maxn], Rank[maxn]; // Sa[i] 排名第i的下标， Rank[i] 下标i的排名
 	int n, dp[maxn][21];
 	void init(char *buf, int len) { // 预处理，sa，rank，height
 		n = len;
-		for (int i = 0; i < 500; ++i) cntA[i] = 0;
-		for (int i = 1; i <= n; ++i) cntA[(int)buf[i]]++;
-		for (int i = 1; i < 500; ++i) cntA[i] += cntA[i-1];
-		for (int i = n; i >= 1; --i) Sa[ cntA[(int)buf[i]]-- ] = i;
+		for (int i = 0; i < maxn; ++i) cntA[i] = 0;
+		for (int i = 1; i <= n; ++i) cntA[buf[i]]++;
+		for (int i = 1; i < maxn; ++i) cntA[i] += cntA[i-1];
+		for (int i = n; i >= 1; --i) Sa[ cntA[buf[i]]-- ] = i;
 		Rank[ Sa[1] ] = 1;
 		for (int i = 2; i <= n; ++i) {
 			Rank[Sa[i]] = Rank[Sa[i-1]];
@@ -66,3 +76,16 @@ struct SuffixArray{ // 下标1
 		return ans;
 	}
 }S;
+char s[maxn], t[maxn];
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(0), cout.tie(0);
+	int T;
+	cin >> T;
+	while (T--) {
+		cin >> s+1;
+		S.init(s, strlen(s+1));
+		cout << S.getnum() << endl;
+	}
+	return 0;
+}
