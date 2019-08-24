@@ -23,6 +23,7 @@ struct reset_kruskal{
 	} 
 	void dfs (int u) { // 预处理lca
 		vis[u] = 1;
+
 		for (int i = 1; i <= log2(n); ++i) {
 			if (fa[u][i-1] == 0) break;
 			fa[u][i] = fa[fa[u][i-1]][i-1];
