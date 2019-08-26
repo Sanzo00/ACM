@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 #define endl '\n'
-const int maxn = 1e4 + 5;
+const int maxn = 5e2 + 5;
 const int inf = 0x3f3f3f3f;
 const int mod = 1e9 + 7;
 using namespace std;
 struct Dinic{
     struct ac{
         int v, c, nex;
-    }edge[maxn << 4]; // 根据题目要求计算
+    }edge[maxn << 6]; // 根据题目要求计算
     int s, e;
     int head[maxn], dis[maxn], curedge[maxn], cnt;
     void init() {
@@ -15,7 +15,6 @@ struct Dinic{
         memset(head, -1, sizeof(head));
     }
     void add(int u, int v, int c) {
-        // printf("%d %d %d\n", u, v, c);
         // 正向建边
         edge[cnt] = {v, c, head[u]};
         head[u] = cnt++;
@@ -69,6 +68,7 @@ struct Dinic{
         return sum;
     }
 }D;
+int L[maxn], R[maxn];
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0), cout.tie(0);
@@ -78,15 +78,21 @@ int main() {
         D.init();
         int u, v, a, b, c;
         long long ans = 0;
+        fill(L, L+n+1, 0);
+        fill(R, R+n+1, 0);
         for (int i = 0; i < m; ++i) {
             scanf("%d %d %d %d %d", &u, &v, &a, &b, &c);
             ans += a + b + c;
             D.add(u, v, a + c - 2*b);
             D.add(v, u, a + c - 2*b);
-            D.add(s, u, b + c);
-            D.add(s, v, b + c);
-            D.add(v, e, a + b);
-            D.add(u, e, a + b);
+            L[u] += b + c;
+            L[v] += b + c;
+            R[u] += a + b;
+            R[v] += a + b;
+        }
+        for (int i = 1; i <= n; ++i) {
+            D.add(s, i, L[i]);
+            D.add(i, e, R[i]);
         }
         ans = ans * 2 - D.dinic();
         printf("%lld\n", ans / 2);
