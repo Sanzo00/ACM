@@ -1,3 +1,16 @@
+---
+
+## CF-786B(Legacy) 区间最短路
+
+### 题意
+
+有三种边[u,v], [u, [L,R]], [[L,R], v],求从S出发到其他所有点的最短路
+
+#### 思路
+
+线段树维护区间建图
+
+```cpp
 #include <bits/stdc++.h>
 const int maxn = 1e5 + 5;
 const long long inf = 1e18;
@@ -85,3 +98,9 @@ int main() {
     puts("");
     return 0;
 }
+```
+
+
+
+
+
