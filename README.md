@@ -2,12 +2,12 @@
 
 ```
 BZOJ                          3
-Codeforces                    108
+Codeforces                    109
 CometOJ                       5
 ECNUOJ                        4
 HDU                           76
 HPUOJ                         11
-Jisuanke                      3
+Jisuanke                      4
 Kattis                        2
 Luogu                         7
 NEWoj                         1
@@ -20,4 +20,4 @@ ZOJ                           2
 hihoCoder                     10
 zzuliOJ                       8
 ```
-## Total: 345
+## Total: 347
