@@ -3,7 +3,9 @@ import os, datetime, time
 all = 0
 lastweek = 0
 
-R = open('/home/na/ACM/README.md', 'r')
+dir = "you workspace/ACM/"
+
+R = open(dir + 'README.md', 'r')
 
 def getLastweek():
 	global lastweek
@@ -33,9 +35,9 @@ def getFiles(path):
 def getReadme():
 	# getLastweek()
 	global all, weekday, lastweek
-	W = open('/home/na/ACM/README.md', 'w')
+	W = open(dir + 'README.md', 'w')
 	W.write('# All the problems I solved\n\n```\n')
-	path = "/home/na/ACM/ACcode"
+	path = dir + "ACcode"
 	OJ = os.listdir(path)
 	OJ.sort()
 	for i in OJ:
@@ -55,7 +57,7 @@ if __name__ == '__main__':
 
 	# print(days)
 	getReadme()
-	os.system("cd /home/na/ACM && git add .")
-	os.system("cd /home/na/ACM && git commit -m {}".format("update_" + days))
-	os.system("cd /home/na/ACM && git push")
+	os.system("cd %s && git add ." % dir)
+	os.system("cd %s && git commit -m %s" %(dir, "update_" + days))
+	os.system("cd %s && git push" % dir)
 	
