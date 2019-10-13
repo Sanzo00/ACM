@@ -3,8 +3,8 @@ const int maxn = 3e5 + 5;
 using namespace std;
 char s[maxn];
 int main() {
-    int n;
-    scanf("%d%s", &n, s);
+    long long n;
+    scanf("%lld%s", &n, s);
     long long ans = n * (n-1) / 2;
     int cnt = 1;
     for (int i = 1; i < n; ++i) {
