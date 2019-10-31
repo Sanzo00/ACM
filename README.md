@@ -1,8 +1,8 @@
 # All the problems I solved
 
 ```
-BZOJ                          3
-Codeforces                    160
+BZOJ                          4
+Codeforces                    161
 CometOJ                       5
 ECNUOJ                        4
 HDU                           76
@@ -20,4 +20,4 @@ ZOJ                           2
 hihoCoder                     10
 zzuliOJ                       8
 ```
-## Total: 403
+## Total: 405
