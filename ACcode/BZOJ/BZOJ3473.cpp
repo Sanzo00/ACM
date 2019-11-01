@@ -1,13 +1,12 @@
 #include <bits/stdc++.h>
-const int maxn = 3e5 + 5;
+const int maxn = 2e5 + 5;
 const int inf = 0x3f3f3f3f;
 const int mod = 1e9 + 7;
 using namespace std;
 struct SAM{
-    int trans[maxn<<1][3], slink[maxn<<1], maxlen[maxn<<1];
+    int trans[maxn<<1][26], slink[maxn<<1], maxlen[maxn<<1];
     // 用来求endpos
     int indegree[maxn<<1], endpos[maxn<<1], rank[maxn<<1], ans[maxn<<1];
-    // 计算所有子串的和(0-9表示)
     long sum[maxn<<1];
     int last, now, root, len;
     inline void newnode (int v) {
@@ -16,8 +15,6 @@ struct SAM{
     inline void init() {
         root = now = 1;
         memset(trans, 0, sizeof(trans));
-        // memset(slink, 0, sizeof(slink));
-        // memset(maxlen, 0, sizeof(maxlen));
     }
     inline void extend(int c) {
         if (trans[last][c]) { // 广义自动机 节点合并 节省空间
@@ -66,37 +63,63 @@ struct SAM{
     inline void insert(char *buf) {
         len = strlen(buf);
         last = 1;
-        for (int i = 0; i < len; ++i) extend(buf[i] - '0'); // extend(s[i] - '1');
+        for (int i = 0; i < len; ++i) extend(buf[i] - 'a'); // extend(s[i] - '1');
     }
-    // 求不同的子串种类
-    inline long long all () {
-        long long ans = 0;
-        for (int i = root+1; i <= now; ++i) {
-            ans += maxlen[i] - maxlen[ slink[i] ];
+    int cnt[maxn], vis[maxn];
+    long long dp[maxn];
+    inline void Topsort() {
+        for (int i = 1; i <= now; ++i) indegree[maxlen[i]]++;
+        for (int i = 1; i <= now; ++i) indegree[i] += indegree[i-1];
+        for (int i = 1; i <= now; ++i) rank[indegree[maxlen[i]]--] = i;
+    }
+    inline void init_string(char *buf, int num) {
+        int tnow = 1;
+        for (int i = 0; buf[i]; ++i) {
+            tnow = trans[tnow][buf[i] - 'a'];
+            int tmp = tnow;
+            while (tmp && vis[tmp] != num) {
+                vis[tmp] = num;
+                cnt[tmp]++;
+                tmp = slink[tmp];
+            }
         }
-        return ans;
+    }
+    inline void init_dp(int k) {
+        Topsort();
+        for (int i = 1; i <= now; ++i) {
+            int tnow = rank[i];
+            if (cnt[tnow] >= k) dp[tnow] = maxlen[tnow] - maxlen[slink[tnow]];
+            if (slink[tnow]) dp[tnow] += dp[slink[tnow]];
+        }   
+    }
+    inline void solve(char *buf) {
+        long long ans = 0;
+        int tnow = 1;
+        for (int i = 0; buf[i]; ++i) {
+            tnow = trans[tnow][buf[i] - 'a'];
+            ans += dp[tnow];
+        }
+        printf("%lld ", ans);
     }
 }sam;
-char s[maxn], ss[maxn], t[4] = "012";
+char s[maxn], t[maxn];
+int pos[maxn], length[maxn];
 int main() {
-    int n;
-    while (scanf("%d%s", &n, s) != EOF) {
-        sam.init();
-        do{
-            for (int i = 0; i < n; ++i) {
-                ss[i] = t[s[i]-'a'];
-            }
-            sam.insert(ss);
-        }while(next_permutation(t, t+3));
-        long long ans = sam.all();
-        int tmp = 1, sum = 1;
-        for (int i = 1; i < n; ++i) {
-            if (s[i] == s[i-1]) ++tmp;
-            else tmp = 1;
-            sum = max(sum, tmp);
+    int n, k, now = 0;
+    scanf("%d%d", &n, &k);
+    sam.init();
+    for (int i = 1; i <= n; ++i) {
+        scanf("%s", t);
+        length[i] = strlen(t);
+        pos[i] = now;
+        for (int j = 0; j < length[i]; ++j) {
+            s[now++] = t[j];
         }
-        ans += sum * 3;
-        printf("%lld\n", ans/6);
+        s[now++] = 0;
+        sam.insert(s+pos[i]);
     }
+    for (int i = 1; i <= n; ++i) sam.init_string(s+pos[i], i);
+    sam.init_dp(k);
+    for (int i = 1; i <= n; ++i) sam.solve(s+pos[i]);
     return 0;
 }

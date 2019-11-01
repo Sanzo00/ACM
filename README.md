@@ -1,7 +1,7 @@
 # All the problems I solved
 
 ```
-BZOJ                          4
+BZOJ                          5
 Codeforces                    161
 CometOJ                       5
 ECNUOJ                        4
@@ -20,4 +20,4 @@ ZOJ                           2
 hihoCoder                     10
 zzuliOJ                       8
 ```
-## Total: 406
+## Total: 407
